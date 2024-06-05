@@ -35,6 +35,7 @@ This can be turned off by setting `display=False` in the `gifify` function.
 
 # TODO
 
+-   [ ] Add ability to pass artists and other options to the `plt.savefig` call
 -   [ ] Fix issue where the gif doesnt loop when displayed in the notebook
 -   [ ] Add controls to the gif in the notebook
 -   [ ] Add support for other formats beyond gifs
