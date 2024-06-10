@@ -39,3 +39,5 @@ This can be turned off by setting `display=False` in the `gifify` function.
 -   [ ] Fix issue where the gif doesnt loop when displayed in the notebook
 -   [ ] Add controls to the gif in the notebook
 -   [ ] Add support for other formats beyond gifs
+-   [ ] Add option to save only every n-th frame, or total number of frames
+-   [ ] Add `__len__` so that tqdm can be chained in either order
