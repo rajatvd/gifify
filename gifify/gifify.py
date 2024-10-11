@@ -21,7 +21,7 @@ class Gifify(Iterable):
     def __next__(self):
         if self.counter > 0:
             b = BytesIO()
-            plt.savefig(b, format="png")
+            plt.savefig(b, format="png", transparent=True)
             b.seek(0)
             img = plt.imread(b)
             img = (img * 255).astype("uint8")
