@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import matplotlib
 from IPython.display import Image, display
 from io import BytesIO
 import imageio
@@ -7,9 +8,16 @@ from collections.abc import Iterable
 
 # %%
 class Gifify(Iterable):
-    def __init__(self, iterator, filename="out.gif", display=True):
+    def __init__(
+        self,
+        iterator,
+        filename="out.gif",
+        display=True,
+        transparent=False,
+    ):
         self.iterator = iterator
         self.filename = filename
+        self.transparent = transparent
         self.images = []
         self.counter = 0
         self.it = iter(iterator)
@@ -21,7 +29,7 @@ class Gifify(Iterable):
     def __next__(self):
         if self.counter > 0:
             b = BytesIO()
-            plt.savefig(b, format="png", transparent=True)
+            plt.savefig(b, format="png", transparent=self.transparent)
             b.seek(0)
             img = plt.imread(b)
             img = (img * 255).astype("uint8")
