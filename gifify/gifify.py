@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import matplotlib
 from IPython.display import Image, display
 from io import BytesIO
 import imageio
@@ -14,10 +13,12 @@ class Gifify(Iterable):
         filename="out.gif",
         display=True,
         transparent=False,
+        duration=0.1,
     ):
         self.iterator = iterator
         self.filename = filename
         self.transparent = transparent
+        self.duration = duration
         self.images = []
         self.counter = 0
         self.it = iter(iterator)
@@ -46,7 +47,7 @@ class Gifify(Iterable):
         self.cleanup()
 
     def cleanup(self):
-        imageio.mimsave(self.filename, self.images)
+        imageio.mimsave(self.filename, self.images, duration=self.duration)
         if self.display:
             display(Image(self.filename))
 
@@ -56,15 +57,21 @@ def gifify(
     iterator,
     filename="out.gif",
     display=True,
+    transparent=False,
+    duration=0.1,
 ):
     """gifify.
 
     :param iterator: iterable
     :param filename: the filename to save the gif to
     :param display: whether to display the gif in the notebook after the loop
+    :param transparent: whether to make the background transparent
+    :param duration: the duration of each frame in the gif
     """
     return Gifify(
         iterator,
         filename=filename,
         display=display,
+        transparent=transparent,
+        duration=duration,
     )
